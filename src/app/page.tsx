@@ -28,7 +28,7 @@ export default function Home() {
       <main className="flex flex-col gap-8 row-start-2 items-center justify-center sm:items-center">
         <Image
           className="dark"
-          src="/starfleet.png"
+          src="/assets/starfleet.png"
           alt="Starfleet Logo"
           width={280}
           height={38}
