@@ -2,20 +2,21 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { ButtonLink, ButtonStyles } from '../components/Button';
+
+// Function to calculate the Starfleet date
+const calculateStarfleetDate = () => {
+  const baseDate = new Date("1987-07-15T00:00:00Z").getTime(); // Base timestamp in milliseconds
+  const currentDate = Date.now(); // Current timestamp in milliseconds
+  const elapsedSeconds = (currentDate - baseDate) / 1000; // Elapsed time in seconds
+
+  const formattedDate = (elapsedSeconds / 3155.76 + 410000) / 10;
+  return formattedDate.toFixed(2); // Format to 2 decimal places
+};
 
 export default function Home() {
   // State to hold the calculated stardate
   const [starfleetDate, setStarfleetDate] = useState<string>("");
-
-  // Function to calculate the Starfleet date
-  const calculateStarfleetDate = () => {
-    const baseDate = new Date("1987-07-15T00:00:00Z").getTime(); // Base timestamp in milliseconds
-    const currentDate = Date.now(); // Current timestamp in milliseconds
-    const elapsedSeconds = (currentDate - baseDate) / 1000; // Elapsed time in seconds
-
-    const formattedDate = (elapsedSeconds / 3155.76 + 410000) / 10;
-    return formattedDate.toFixed(2); // Format to 2 decimal places
-  };
 
   // UseEffect hook to calculate the stardate when the component mounts
   useEffect(() => {
@@ -37,22 +38,8 @@ export default function Home() {
         <p>Welcome to the Library and Computer Access Retrieval System</p>
 
         <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href=""
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Access
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href=""
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Credits
-          </a>
+          <ButtonLink path="">Access</ButtonLink>
+          <ButtonLink path="" variant={ButtonStyles.SECONDARY}>Credits</ButtonLink>
         </div>
       </main>
       
